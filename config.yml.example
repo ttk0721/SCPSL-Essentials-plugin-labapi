@@ -1,0 +1,4 @@
+panelUrl: "https://panel.twojadomena.pl"
+serverId: "server-001"
+apiToken: "change-me"
+listenPort: 7878
