@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\LabAPI-1.1.0\LabAPI-1.1.0\LabApi\LabApi.csproj" />
+    <ProjectReference Include="..\LabApi\LabApi\LabApi.csproj" />
   </ItemGroup>
 
 </Project>

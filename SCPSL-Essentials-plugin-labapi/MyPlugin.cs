@@ -1,27 +1,36 @@
-﻿using LabApi.Loader;
-using LabApi.Loader.Features.Plugins;
-using LabApi.Common.API;
 using System;
+using LabApi.Events.Arguments.PlayerEvents;
+using LabApi.Events.Handlers;
+using LabApi.Features.Console;
+using LabApi.Loader.Features.Plugins;
 
 namespace MyLabApiPlugin
 {
-    public class MyPlugin : Plugin
+    public class SkeletonPlugin : Plugin
     {
-        public override string Name => "MyPlugin";
+        public override string Name => "SkeletonPlugin";
         public override string Author => "ttk0721";
-        public override string Description => "Przykładowy plugin LabAPI";
+        public override string Description => "Przykładowy szkielet pluginu LabAPI";
         public override Version Version => new Version(1, 0, 0);
         public override Version RequiredApiVersion => new Version(1, 0, 0);
         public bool Enabled { get; set; } = true;
 
         public override void Enable()
         {
-            Log.Info("Plugin LabAPI aktywowany!");
+            PlayerEvents.Joined += OnPlayerJoined;
+            Logger.Info("Plugin LabAPI aktywowany!");
         }
 
         public override void Disable()
         {
-            Log.Info("Plugin LabAPI wyłączony.");
+            PlayerEvents.Joined -= OnPlayerJoined;
+            Logger.Info("Plugin LabAPI wyłączony.");
+        }
+
+        private static void OnPlayerJoined(PlayerJoinedEventArgs ev)
+        {
+            Logger.Info($"Gracz {ev.Player.DisplayName} dołączył do serwera.");
+            ev.Player.SendBroadcast("Witaj na serwerze!", 5);
         }
     }
 }
