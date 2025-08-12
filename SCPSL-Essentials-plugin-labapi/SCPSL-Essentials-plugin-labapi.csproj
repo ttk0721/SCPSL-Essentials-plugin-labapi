@@ -1,14 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<!-- ↓ zamiast net8.0 -->
+		<TargetFramework>netstandard2.1</TargetFramework>
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>SCPSL_Essentials_plugin_labapi</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+		<RootNamespace>SCPSL_Essentials_plugin_labapi</RootNamespace>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>false</ImplicitUsings>
+		<Nullable>disable</Nullable>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LabApi\LabApi\LabApi.csproj" />
-  </ItemGroup>
+		<!-- żeby NuGet-owe dll-ki (np. Newtonsoft.Json) trafiły do bin\ -->
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 
+		<!-- (opcjonalnie) wymuś x64; można też zostawić AnyCPU -->
+		<!-- <PlatformTarget>x64</PlatformTarget> -->
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>..\..\slplugin\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="LabApi">
+			<HintPath>LabApi.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+		  <HintPath>..\..\slplugin\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 </Project>
